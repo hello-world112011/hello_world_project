@@ -10,12 +10,8 @@ public class App
     {
         System.out.println( "Hello World!" );
         System.out.println("test");
-        //comment 
+        //comment200 
         System.out.println("test2");
-        //comment2
-        //comment3
-        //comment4
-    
 
     }
 }
