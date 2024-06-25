@@ -12,10 +12,6 @@ public class App
         System.out.println("test");
         //comment 
         System.out.println("test2");
-        //comment2
-        //comment3
-        //comment4
-    
 
     }
 }
