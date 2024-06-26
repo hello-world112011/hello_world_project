@@ -5,7 +5,6 @@ pipeline {
         NEXUS_URL = 'nexus:8081/nexus'
         NEXUS_REPO = '11'
         DOCKER_IMAGE = 'docker_image/Dockerfile'
-        VERSION_FILE = 'version.txt'
     }
 
     stages {
@@ -15,19 +14,6 @@ pipeline {
             }
         }
 
-        stage('Increment Version') {
-            steps {
-                script {
-                    def version = readFile("${VERSION_FILE}").trim()
-                    echo "Current Version: ${version}"
-                    def (major, minor, patch) = version.tokenize('.')
-                    patch = patch.toInteger() + 1
-                    def newVersion = "${major}.${minor}.${patch}"
-                    writeFile file: "${VERSION_FILE}", text: newVersion
-                    echo "New Version: ${newVersion}"
-                }
-            }
-        }
 
         stage('Compile') {
             steps {
@@ -42,7 +28,7 @@ pipeline {
                     protocol: 'http',
                     nexusUrl: "${NEXUS_URL}",
                     groupId: 'com.hello_world',
-                    version: readFile("${VERSION_FILE}").trim(),
+                    version: "${$BUILD_TAG}-${GIT_COMMIT}",
                     repository: "${NEXUS_REPO}",
                     credentialsId: '2',
                     artifacts: [
