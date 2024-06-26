@@ -43,7 +43,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    def version = readFile("${VERSION_FILE}").trim()
+                    def version = "${BUILD_ID}-${GIT_COMMIT}"
                     docker.build("dockerfile:${version}", '-f ./docker_image/dockerfile .')
                 }
             }
