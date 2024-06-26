@@ -26,9 +26,7 @@ pipeline {
                     writeFile file: "${VERSION_FILE}", text: newVersion
                     echo "New Version: ${newVersion}"
                 }
-            }
-        }
-
+        
         stage('Compile') {
             steps {
                 sh 'mvn clean package'
@@ -51,6 +49,7 @@ pipeline {
                 )
             }
         }
+
 
         stage('Build Docker Image') {
             steps {
