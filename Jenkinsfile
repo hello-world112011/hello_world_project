@@ -26,6 +26,10 @@ pipeline {
                     writeFile file: "${VERSION_FILE}", text: newVersion
                     echo "New Version: ${newVersion}"
                 }
+
+                }
+            }
+        }
         
         stage('Compile') {
             steps {
