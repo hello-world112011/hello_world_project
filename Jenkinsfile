@@ -29,7 +29,7 @@ pipeline {
                     protocol: 'http',
                     nexusUrl: "${NEXUS_URL}",
                     groupId: 'com.hello_world',
-                    version: '${BUILD_ID}-"${GIT_COMMIT}"',
+                    version: "${BUILD_ID}-${GIT_COMMIT}",
                     repository: "${NEXUS_REPO}",
                     credentialsId: '2',
                     artifacts: [
